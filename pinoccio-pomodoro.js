@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 var pinoccio = require('pinoccio')
 var prompt = require('prompt');
 var http = require("http");
