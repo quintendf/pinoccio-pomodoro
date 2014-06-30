@@ -23,13 +23,15 @@ runPrompt();
 function setTimer(){
 
     console.log("Task Started. You have 25 minutes till your next break.")
-      setTimeout(function(){var startTimer = 'led.green';
+
+    //after 25 minutes, change LED to green
+    setTimeout(function(){var startTimer = 'led.green';
     pinoccioAPI.rest({url:'/v1/'+troopId+'/'+scoutId+'/command', method:'post', data:{command: startTimer}}, function(err, res){
     if (err) return console.error(err);
     }); }, 1500000);
 
+    //LED is red while task is ongoing
     var endTimer = 'led.red';
-
     pinoccioAPI.rest({url:'/v1/'+troopId+'/'+scoutId+'/command', method:'post', data:{command: endTimer}}, function(err, res){
       if (err) return console.error(err);
       }); 
@@ -47,11 +49,10 @@ function runPrompt(){
   };
 
   prompt.get(property, function (err, result) {
-    //
-    // Log the results.
-    //
   if(result.yesno == 'yes')
   {
+    //if prompt answered yes, set a timer
+    //then, after 25+ minutes, rerun prompt
     setTimer();
     tasksCompleted++;
     setTimeout(function(){runPrompt();}, 1500200);
@@ -59,9 +60,10 @@ function runPrompt(){
   }
   else
   {
+    //if user doesn't want to run another task, 
+    //exit program
     process.exit();
   }
-    
   });
 }
 
