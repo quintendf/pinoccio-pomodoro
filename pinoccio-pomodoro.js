@@ -1,6 +1,6 @@
 var pinoccio = require('pinoccio')
 var prompt = require('prompt');
-var pinoccioAPI = pinoccio('');
+var pinoccioAPI = pinoccio('5ee258c3e8e01a89e62af72425ee7e29');
 var troopId = 1;
 var scoutId = 1;
 var tasksCompleted = 0;
